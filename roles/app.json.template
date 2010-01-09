@@ -1,0 +1,42 @@
+{
+  "json_class": "Chef::Role",
+  "description": "Friendinterview app server",
+  "chef_type": "role",
+  "default_attributes": {
+    "user": "rails",
+    "memcached_instances": {
+      "rails_cache": {
+        "memory": 1024,
+        "port": 11211
+      }
+    },
+    "rails": {
+      "user": "rails",
+      "max_instances_per_app": 140,
+      "deploy_to": "\/var\/www\/fi",
+      "memcached_hosts": [ MEMCACHED_HOSTS ],
+      "version": "2.3.4",
+      "db": {
+        "username": "DB_USER",
+        "password": "DB_PASS",
+        "name": "DB_NAME",
+        "host": "DB_HOST"
+      },
+      "max_pool_size": 140
+    },
+    "apache2": {
+      "keepaliverequests": 0,
+      "prefork": {
+        "serverlimit": 500,
+        "maxclients": 500,
+        "maxrequestsperchild": 0
+      },
+      "listen_ports": [ "80" ]
+    },
+  },
+  "name": "app",
+  "override_attributes": {},
+  "recipes": [ "fi" ],
+  "facebook": "FACEBOOK_CONFIG",
+  "s3_assets": "S3_ASSETS_CONFIG"
+}

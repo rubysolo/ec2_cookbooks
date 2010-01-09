@@ -1,0 +1,7 @@
+production:
+  hosts:
+    <%- @node[:rails][:memcached_hosts].each do |host| -%>
+    - <%= host %>
+    <%- end -%>
+  port: <%= @node[:memcached_instances][:rails_cache][:port] %>
+  namespace: friendinterview

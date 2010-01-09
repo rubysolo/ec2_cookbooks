@@ -1,0 +1,8 @@
+production:
+  adapter: mysql
+  encoding: utf8
+  database: <%= @node[:rails][:db][:name] %>
+  username: <%= @node[:rails][:db][:username] %>
+  password: <%= @node[:rails][:db][:password] %>
+  socket: /var/run/mysqld/mysqld.sock
+  host: <%= @node[:rails][:db][:host] %>
