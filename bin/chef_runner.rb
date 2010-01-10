@@ -10,17 +10,17 @@ metadata = get_ec2_metadata
 
 template = IO.read(File.join(File.dirname(__FILE__), '..', 'roles', 'app.json.template'))
 
-rds = YAML.load('~/.aws/rds.yml') # DB_USER, DB_PASS, DB_NAME, DB_HOST
+rds = YAML.load('~/.aws/rds_data.yml') # DB_USER, DB_PASS, DB_NAME, DB_HOST
 facebook_config = IO.read('~/rails_config/facebook.yml') # FACEBOOK_CONFIG
 s3_assets_config = IO.read('~/rails_config/s3_assets.yml') # S3_ASSETS_CONFIG
 
 # memcached instances - query the elastic loadbalancer for live app servers.
-load_balancer = IO.read "~/.aws/load_balancer"
+load_balancer = YAML.load "~/.aws/load_balancer.yml"
 access_key = IO.read "~/.aws/access_key"
 secret_key = IO.read "~/.aws/secret_key"
 
 elb = AWS::ELB::Base.new( :access_key_id => access_key, :secret_access_key => secret_key )
-active_instances = elb.describe_instance_health(:load_balancer_name => load_balancer).DescribeInstanceHealthResult.InstanceStates.member.map do |i|
+active_instances = elb.describe_instance_health(:load_balancer_name => load_balancer['name']).DescribeInstanceHealthResult.InstanceStates.member.map do |i|
   {
     :instance_id => i["InstanceId"],
     :reason_code => i["ReasonCode"],
