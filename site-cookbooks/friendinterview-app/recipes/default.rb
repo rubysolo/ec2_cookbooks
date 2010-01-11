@@ -54,25 +54,6 @@ user node[:user] do
   password "Rails!"
 end
 
-directory "/home/#{node[:user]}/.ssh" do
-  owner node[:user]
-  group "sysadmin"
-  mode "0700"
-  action :create
-  recursive true
-end
-
-node[:ssh].each do |file, content|
-  template "/home/#{node[:user]}/.ssh/#{file}" do
-    source "file_from_string.erb"
-    action :create
-    owner  node[:user]
-    group  'sysadmin'
-    mode   0400
-    variables :content => content
-  end
-end
-
 # Rails Deploy
 # shared directory
 [ "config", "log/cron" ].each do |shared_dirname|
