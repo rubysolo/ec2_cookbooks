@@ -40,7 +40,7 @@ active_ips = (ec2.describe_instances(active_instances).reservationSet || []).map
 end.flatten
 
 # add ourself to the mix, in case we are not yet registered
-active_ips << metadata['private-ipv4']
+active_ips << metadata['local-ipv4']
 active_ips.uniq!
 
 # generate the result app.json
