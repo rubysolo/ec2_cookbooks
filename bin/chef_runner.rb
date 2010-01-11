@@ -62,4 +62,4 @@ File.open(File.join(File.dirname(__FILE__), '..', 'roles', 'app.json'), 'w') do 
 end
 
 # execute chef-solo
-%x{chef-solo -j /etc/chef/config/dna.json -c /etc/chef/config/solo.rb'}
+%x{chef-solo -l debug -j /etc/chef/config/dna.json -c /etc/chef/config/solo.rb'}
