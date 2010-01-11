@@ -40,5 +40,8 @@
   },
   "recipes": [ "friendinterview-app" ],
   "facebook": "FACEBOOK_CONFIG",
-  "s3_assets": "S3_ASSETS_CONFIG"
+  "s3_assets": "S3_ASSETS_CONFIG",
+  "ssh_keys": {
+    SSH_KEYS
+  }
 }
