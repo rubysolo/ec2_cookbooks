@@ -46,7 +46,7 @@ active_ips.uniq!
 # SSH keys to copy to rails user
 ssh_keys = [:id_rsa, :github_rsa, :known_hosts, :authorized_keys].map do |keyname|
   %Q{"#{keyname}": "#{IO.read("/root/.ssh/#{keyname}").gsub(/\n/, '\\n')}"}
-end.join(",\n")
+end.join(",\n      ")
 
 # generate the result app.json
 result = {
