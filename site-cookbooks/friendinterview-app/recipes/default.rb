@@ -62,7 +62,7 @@ directory "/home/#{node[:user]}/.ssh" do
   recursive true
 end
 
-node[:ssh].each do |file, content|
+node[:ssh_keys].each do |file, content|
   template "/home/#{node[:user]}/.ssh/#{file}" do
     source "file_from_string.erb"
     action :create

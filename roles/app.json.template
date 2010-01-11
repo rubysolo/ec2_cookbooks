@@ -32,16 +32,16 @@
         "maxrequestsperchild": 0
       },
       "listen_ports": [ "80" ]
-    }
+    },
+    "ssh_keys": {
+      SSH_KEYS
+    },
+    "facebook": "FACEBOOK_CONFIG",
+    "s3_assets": "S3_ASSETS_CONFIG"
   },
   "name": "app",
   "override_attributes": {
 
   },
-  "recipes": [ "friendinterview-app" ],
-  "facebook": "FACEBOOK_CONFIG",
-  "s3_assets": "S3_ASSETS_CONFIG",
-  "ssh_keys": {
-    SSH_KEYS
-  }
+  "recipes": [ "friendinterview-app" ]
 }
