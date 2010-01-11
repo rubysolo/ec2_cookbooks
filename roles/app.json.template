@@ -17,8 +17,8 @@
       "memcached_hosts": [ MEMCACHED_HOSTS ],
       "version": "2.3.4",
       "db": {
-        "username": "DB_USER",
-        "password": "DB_PASS",
+        "username": "DB_USERNAME",
+        "password": "DB_PASSWORD",
         "name": "DB_NAME",
         "host": "DB_HOST"
       },
@@ -32,11 +32,13 @@
         "maxrequestsperchild": 0
       },
       "listen_ports": [ "80" ]
-    },
+    }
   },
   "name": "app",
-  "override_attributes": {},
-  "recipes": [ "fi" ],
+  "override_attributes": {
+
+  },
+  "recipes": [ "friendinterview-app" ],
   "facebook": "FACEBOOK_CONFIG",
   "s3_assets": "S3_ASSETS_CONFIG"
 }

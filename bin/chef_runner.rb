@@ -45,13 +45,13 @@ active_ips.uniq!
 
 # generate the result app.json
 result = {
-  'MEMCACHED_HOSTS'  => active_ips.map{|i| "'#{i}'" }.join(', '),
+  'MEMCACHED_HOSTS'  => active_ips.map{|i| %Q{"#{i}"} }.join(', '),
   'DB_HOST'          => rds['host'],
   'DB_NAME'          => rds['name'],
   'DB_USERNAME'      => rds['username'],
   'DB_PASSWORD'      => rds['password'],
-  'FACEBOOK_CONFIG'  => facebook_config,
-  'S3_ASSETS_CONFIG' => s3_assets_config
+  'FACEBOOK_CONFIG'  => facebook_config.gsub(/\n/, '\\n'),
+  'S3_ASSETS_CONFIG' => s3_assets_config.gsub(/\n/, '\\n')
 }.inject(template) do |t, (search, replace)|
   t.gsub(search, replace)
 end
